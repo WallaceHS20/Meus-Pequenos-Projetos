@@ -1,0 +1,16 @@
+ System.out.println("DDDDD");
+        
+        String  Cpf="123.456.789-10";
+        String[] ab = Cpf.split("(?!.-^)");
+        
+        String cpf_candidato = "";
+        int convert = 0;
+        String recept = "";
+        
+        
+        
+        for (String sss : ab) {
+        	
+        	System.out.println(sss); 
+        	
+        	 if 
