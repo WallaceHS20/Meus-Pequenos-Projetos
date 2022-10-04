@@ -1,16 +1,29 @@
- System.out.println("DDDDD");
-        
-        String  Cpf="123.456.789-10";
-        String[] ab = Cpf.split("(?!.-^)");
-        
-        String cpf_candidato = "";
-        int convert = 0;
-        String recept = "";
-        
-        
-        
-        for (String sss : ab) {
-        	
-        	System.out.println(sss); 
-        	
-        	 if 
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class ConnectionFactory {
+    private  static  final String USERNAME = "root";
+    private  static  final String PASSWORD = "Troca@123";
+    private  static  final String DATABASE_URL = "jdbc:mysql://localhost:3306/api";
+
+    public static Connection createConnectionToMySQL() throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.jdbc.Driver");
+
+        Connection connection = DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
+
+        return connection;
+    }
+
+    public static void main(String[] args) throws Exception {
+
+        Connection con = createConnectionToMySQL();
+        if (con != null) {
+            System.out.println("Conexão com sucesso");
+
+        }
+    }
+}
+
+
