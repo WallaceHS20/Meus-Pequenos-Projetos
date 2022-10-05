@@ -26,4 +26,26 @@ public class ConnectionFactory {
     }
 }
 
+---------------------------------------------------------------------------
+String cpf="123.456.789-10";
+        String[] ab = cpf.split("");
+        List<String> itens = new ArrayList();     
+        String teste = "";
 
+        long tipoLong = 0L;
+        
+        itens.addAll(Arrays.asList(ab));
+        
+        for (String sss : itens){
+            
+            if (!"-".equals(sss) && !".".equals(sss)){
+                
+                teste += sss;
+                
+            }
+            
+        }
+       
+        tipoLong = Long.parseLong(teste);
+        
+        System.out.println(tipoLong);
