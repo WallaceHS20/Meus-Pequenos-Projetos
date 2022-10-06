@@ -84,3 +84,17 @@ public class CandidatoDAO {
 
         candidatoDAO.save(usuario);
     }
+
+
+    public void save (Candidato candidato){
+        String sql = "INSERT INTO candidato (nome_candidato, cpf, data_nasc, telefone, pret_salarial) VALUES (?, ?, ?,?,?)";
+        Connection conn = null;
+        PreparedStatement pstm = null;
+
+        try{
+            conn = ConnectionFactory.createConnectionToMySQL();
+            pstm = (PreparedStatement) conn.prepareStatement(sql);
+            pstm.setString(1,candidato.getNome());
+            pstm.setLong(2,candidato.getCpf());
+            pstm.setString(3,candidato.getData_nascc());
+            pstm.setLong(4,candidato.getTelefone());
