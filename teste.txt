@@ -1,60 +1,29 @@
- ---- Criar package CoonectionFactory / depois classe ConnectionFactory -------
+package AcessoDAO;
 
-package Candidato.Facyoty;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-public class ConnectionFactory {
-
-    private  static  final String USERNAME = "root";
-    private  static  final String PASSWORD = "";
-    private  static  final String DATABASE_URL = "jdbc:mysql://localhost:3306/api";
-
-    public static Connection createConnectionToMySQL() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-
-        Connection connection = DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
-
-        return connection;
-    }
-
-    public static void main(String[] args) throws Exception {
-
-        Connection con = createConnectionToMySQL();
-        if (con != null) {
-            System.out.println("Conexão com sucesso");
-
-        }
-    }
-}
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-CRIAR PACKAGE CANDIDATODAO / class CandidatoDAO
-
-package candidatoDAO;
-
-import Candidato.Facyoty.ConnectionFactory;
-import com.example.emprego.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import ConnectionFA.ConnectionFactory;
+import com.example.emprego.Candidato;
 
-public class CandidatoDAO {
+public class UsuarioCandDAO {
 
-    public void save (Usuario usuario){
-        String sql = "INSERT INTO usuario (email,senha) VALUES (?, ?)";
+    public void savecand (Candidato candidato){
+        String sql = "INSERT INTO candidato (nome_canidadato, cpf, data_nasc, telefone, pret_salarial) VALUES (?, ?, ?, ?, ?)";
         Connection conn = null;
         PreparedStatement pstm = null;
 
         try{
             conn = ConnectionFactory.createConnectionToMySQL();
             pstm = (PreparedStatement) conn.prepareStatement(sql);
-            pstm.setString(1, usuario.getE_mail());
-            pstm.setString(2, usuario.getSenha());
+
+            pstm.setString(1, candidato.getNome());
+            pstm.setLong(2, candidato.getCpf());
+            pstm.setString(3, candidato.getDataNac());
+            pstm.setLong(4, candidato.getTelefone());
+            pstm.setFloat(5, candidato.getPretSalarial());
 
             pstm.execute();
+
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -71,30 +40,7 @@ public class CandidatoDAO {
             }
         }
     }
+
 }
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
- public static void main (String[] args){
-        CandidatoDAO candidatoDAO = new CandidatoDAO();
-
-        Usuario usuario = new Usuario();
-        usuario.setE_mail("miguel.Oliveira33@gmail.com");
-        usuario.setSenha("99614@Whs");
-
-        candidatoDAO.save(usuario);
-    }
-
-
-    public void save (Candidato candidato){
-        String sql = "INSERT INTO candidato (nome_candidato, cpf, data_nasc, telefone, pret_salarial) VALUES (?, ?, ?,?,?)";
-        Connection conn = null;
-        PreparedStatement pstm = null;
-
-        try{
-            conn = ConnectionFactory.createConnectionToMySQL();
-            pstm = (PreparedStatement) conn.prepareStatement(sql);
-            pstm.setString(1,candidato.getNome());
-            pstm.setLong(2,candidato.getCpf());
-            pstm.setString(3,candidato.getData_nascc());
-            pstm.setLong(4,candidato.getTelefone());
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
