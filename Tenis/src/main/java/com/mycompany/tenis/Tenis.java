@@ -149,6 +149,14 @@ public class Tenis {
                 JOptionPane.INFORMATION_MESSAGE);
         }
     }
+    
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args){
+        new Tela_Tenis().setVisible(true);
+    }
    
 }
 
