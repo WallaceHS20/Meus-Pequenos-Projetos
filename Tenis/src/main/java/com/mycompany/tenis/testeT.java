@@ -24,42 +24,6 @@ import java.util.List;
  */
 public class testeT {
     
-    private String marca;
-    private String nome;
-    private String tamanho;
-    private String cor;
-    private String material;
-    
-    public testeT(){
-    
-}
-    public testeT (String marca){
-        
-    }
-    
-    public static void main(String[] args) throws IOException {
-
-          StringBuilder nomes = new StringBuilder();
-        nomes.append("Carlos").append("Maria").append("José").append("Renata");
-
-        System.out.println(nomes.toString());
-        
-        
-        String[] cabecalho = {"nome", "idade", "telefone"};
-
-        List<String[]> linhas = new ArrayList<>();
-        linhas.add(new String[]{"Maria","23","maria@dicasdeprogramacao.com.br"});
-        linhas.add(new String[]{"Ana","25","ana@dicasdejava.com.br"});
-
-        Writer writer = Files.newBufferedWriter(Paths.get("C:\\Users\\Honorato\\Documents\\NetBeansProjects\\Tenis\\src\\main\\java\\com\\mycompany\\tenis\\pessoas.csv"));
-        CSVWriter csvWriter = new CSVWriter(writer);
-
-        csvWriter.writeNext(cabecalho);
-        csvWriter.writeAll(linhas);
-
-        csvWriter.flush();
-        writer.close();     
-
-    }
+   
     
 }
